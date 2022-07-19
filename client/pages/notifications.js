@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import DoctorAnswerAlert from "../components/Notification/DoctorAnswerAlert";
 import SomeoneAnswerAlert from "../components/Notification/SomeoneAnswerAlert";
 import BlogAlert from "../components/Notification/BlogAlert";
@@ -45,31 +45,63 @@ const DUMMY_NOTIFICATIONS = [
 ];
 
 const NotificationsPage = () => {
+    const [newQuestionNotifications, setNewQuestionNotifications] = useState(
+        DUMMY_NOTIFICATIONS.filter((notification) => notification.type === "question")
+    );
+    const [newDoctorAnswerNotifications, setNewDoctorAnswerNotifications] = useState(
+        DUMMY_NOTIFICATIONS.filter((notification) => notification.type === "answer:doctor")
+    );
+    const [newGeneralAnswerNotifications, setNewGeneralAnswerNotifications] = useState(
+        DUMMY_NOTIFICATIONS.filter((notification) => notification.type === "answer:general")
+    );
+    const [newBlogNotifications, setNewBlogNotifications] = useState(
+        DUMMY_NOTIFICATIONS.filter((notification) => notification.type === "blog")
+    );
+
     return (
         <Container className="px-5 mt-3 pb-3">
             <div
                 className="mx-5 bg-light rounded-3 p-3"
-                style={{
-                    height: "35rem",
-                    overflowY: "scroll",
-                }}
             >
                 <h3>Notifications</h3>
                 <hr />
                 <div className="px-4 py-2">
-                    {DUMMY_NOTIFICATIONS.map((notification) => {
-                        if (notification.type === "question") {
-                            return <QuestionAlert notification={notification} />;
-                        } else if (notification.type === "answer:doctor") {
-                            return <DoctorAnswerAlert notification={notification} />;
-                        } else if(notification.type === "answer:general") {
-                            return <SomeoneAnswerAlert notification={notification} />
-                        } else if (notification.type === "blog") {
-                            return <BlogAlert notification={notification} />;
-                        } else {
-                            return <div>ERROR</div>;
-                        }
-                    })}
+                    <div className="border rounded-3 mb-3 px-3 py-2">
+                        <h5 className="text-muted">New blogs</h5>
+                        <hr />
+                        <div>
+                            {newBlogNotifications.map((notification) => (
+                                <BlogAlert notification={notification} key={notification.notification_id} />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="border rounded-3 mb-3 px-3 py-2">
+                        <h5 className="text-muted">New questions</h5>
+                        <hr />
+                        <div>
+                            {newQuestionNotifications.map((notification) => (
+                                <QuestionAlert notification={notification} key={notification.notification_id} />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="border rounded-3 mb-3 px-3 py-2">
+                        <h5 className="text-muted">New doctor's answers</h5>
+                        <hr />
+                        <div>
+                            {newDoctorAnswerNotifications.map((notification) => (
+                                <DoctorAnswerAlert notification={notification} key={notification.notification_id} />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="border rounded-3 mb-3 px-3 py-2">
+                        <h5 className="text-muted">New general user's answers</h5>
+                        <hr />
+                        <div>
+                            {newGeneralAnswerNotifications.map((notification) => (
+                                <SomeoneAnswerAlert notification={notification} key={notification.notification_id} />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </Container>

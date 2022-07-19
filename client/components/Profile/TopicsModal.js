@@ -43,23 +43,24 @@ const TopicsModal = ({ isShowTopics, onCloseTopicModalHandler }) => {
     return (
         <Modal show={isShowTopics} onHide={onCloseTopicModalHandler}>
             <Modal.Header closeButton>
-                <Modal.Title>เลือกTopicที่สนใจ</Modal.Title>
+                <Modal.Title>เลือกหัวข้อที่สนใจ</Modal.Title>
             </Modal.Header>
             <Modal.Body
                 style={{
                     height: "25rem",
-                    overflow: "scroll",
+                    overflowY: "scroll",
                 }}
             >
                 <div className="py-3">
                     {topics.map((topic, index) => (
-                        <div>
+                        <div className="d-flex align-items-center border-bottom border-dark pb-1">
                             <Form.Check
                                 key={index}
                                 type="checkbox"
-                                label={topic.topic}
                                 onChange={(e) => selectNewTopicHandler(topic.topic_id, e)}
+                                role="button"
                             />
+                            <span className="fs-4 ms-2">{topic.topic}</span>
                         </div>
                     ))}
                 </div>
@@ -70,7 +71,7 @@ const TopicsModal = ({ isShowTopics, onCloseTopicModalHandler }) => {
                     onClick={updateNewTopicHandler}
                     disabled={selectedTopics.length === 0}
                 >
-                    Select
+                    เพิ่มไปยังความสนใจ
                 </button>
             </Modal.Footer>
         </Modal>

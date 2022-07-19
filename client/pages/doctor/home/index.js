@@ -1,5 +1,6 @@
 import React from "react";
-import QuestionItem from "./QuestionItem";
+import { Container } from "react-bootstrap";
+import QuestionItem from "../../../components/Question/QuestionItem";
 
 const DUMMY_QUESTIONS = [
     {
@@ -23,7 +24,7 @@ const DUMMY_QUESTIONS = [
         profileImageUrl: "/profile-icons/w.png",
         answers: 2,
         topic: "โรคหัวใจ",
-        isAnsweredByDoctor: true,
+        isAnsweredByDoctor: false,
         created_at: new Date(),
     },
     {
@@ -47,7 +48,7 @@ const DUMMY_QUESTIONS = [
         profileImageUrl: "/profile-icons/w.png",
         answers: 5,
         topic: "โรคหัวใจ",
-        isAnsweredByDoctor: true,
+        isAnsweredByDoctor: false,
         created_at: new Date(),
     },
     {
@@ -64,18 +65,22 @@ const DUMMY_QUESTIONS = [
     },
 ];
 
-const LatestQuestions = ({ questions }) => {
+const DoctorHomePage = () => {
     return (
-        <div className="py-3 px-4">
-            <h3>Latest questions</h3>
-            <hr />
-            <div>
-                {DUMMY_QUESTIONS.map((question) => (
-                    <QuestionItem question={question} key={question.question_id} />
-                ))}
+        <Container>
+            <div className="mx-5 px-5 rounded-3 bg-light mt-4 pt-3 pb-5">
+                <div>
+                    <h2>คำถามล่าสุดในหัวข้อที่คุณสนใจ</h2>
+                    <hr />
+                    <div className="px-3">
+                        {DUMMY_QUESTIONS.map(question => (
+                            <QuestionItem question={question} isDoctor={true} />
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
+        </Container>
     );
 };
 
-export default LatestQuestions;
+export default DoctorHomePage;

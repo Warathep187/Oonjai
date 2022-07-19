@@ -1,10 +1,21 @@
 import { Badge, Container } from "react-bootstrap";
 import moment from "moment";
-import Answers from "../../components/Answer/Answers";
+import Answers from "../../../components/Answer/Answers";
 import Link from "next/link";
-import LatestQuestions from "../../components/Question/LatestQuestions";
+import { FloatingLabel, Form } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {useRouter} from "next/router";
 
-const QuestionPage = () => {
+const DoctorQuestionPage = () => {
+    const router = useRouter();
+    const [questionId, setQuestionId] = useState(null);
+
+    useEffect(() => {
+        if(router.query.question_id) {
+            setQuestionId(router.query.question_id);
+        }
+    }, [router.query.question_id])
+
     return (
         <Container>
             <div className="mt-3 mx-5 px-5 py-3 bg-light rounded-3 position-relative">
@@ -22,7 +33,6 @@ const QuestionPage = () => {
                         <span role="button">{"โรคหัวใจ"}</span>
                     </Link>
                 </Badge>
-
                 <div>
                     <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, odio.</h5>
                     <p>
@@ -53,12 +63,20 @@ const QuestionPage = () => {
                         <span className="text-muted">{moment(new Date()).format("DD/MM/yyyy HH:mm")}</span>
                     </div>
                 </div>
-                <Answers />
-                <hr />
-                <LatestQuestions />
+                <div className="my-3 w-50">
+                    <FloatingLabel controlId="floatingTextarea" label="คำตอบของคุณ">
+                        <Form.Control as="textarea" placeholder="Leave a comment here" style={{ height: "80px" }} />
+                    </FloatingLabel>
+                    <div className="text-end">
+                        <button className="btn btn-outline-primary mt-2">ตอบคำถาม</button>
+                    </div>
+                </div>
+                {
+                    questionId && <Answers questionId={questionId} />
+                }
             </div>
         </Container>
     );
 };
 
-export default QuestionPage;
+export default DoctorQuestionPage;

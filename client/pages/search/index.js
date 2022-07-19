@@ -118,14 +118,14 @@ const SearchPage = () => {
                 <div className="border rounded p-3 mt-3">
                     <h1 className="fs-4">
                         บล็อคที่เกี่ยวข้องกับ{" "}
-                        <b className="text-primary">"{router.query.key ? router.query.key : ""}"</b>
+                        <b>"{router.query.key ? router.query.key : ""}"</b>
                     </h1>
                     <Blogs blogs={relatedBlogs} />
                 </div>
                 <div className="border rounded p-3 mt-3">
                     <h1 className="fs-4">
                         คำถามที่เกี่ยวข้องกับ{" "}
-                        <b className="text-primary">"{router.query.key ? router.query.key : ""}"</b>
+                        <b>"{router.query.key ? router.query.key : ""}"</b>
                     </h1>
                     <Questions questions={relatedQuestions} />
                 </div>

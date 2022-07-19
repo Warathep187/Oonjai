@@ -4,7 +4,7 @@ import AdminNav from "./AdminNav";
 import DoctorNav from "./DoctorNav";
 
 const Nav = () => {
-    const role = "patient";
+    const role = "admin";
 
     if(role === "admin") {
         return <AdminNav />

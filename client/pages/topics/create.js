@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container, Form, ListGroup } from "react-bootstrap";
-import { Trash3 } from "react-bootstrap-icons";
+import { PencilSquare, Trash3 } from "react-bootstrap-icons";
 import Link from "next/link";
 
 const CreateTopicPage = () => {
@@ -58,7 +58,10 @@ const CreateTopicPage = () => {
                                             <span>{topic.topic}</span>
                                         </Link>
                                         {topic.created_by === 11 && (
-                                            <Trash3 role="button" onClick={() => removeTopicHandler(topic.topic_id)} />
+                                            <div className="d-flex align-items-center">
+                                                <PencilSquare role="button" />
+                                                <Trash3 role="button" className="ms-1" onClick={() => removeTopicHandler(topic.topic_id)} />
+                                            </div>
                                         )}
                                     </div>
                                 </ListGroup.Item>

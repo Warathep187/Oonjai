@@ -43,10 +43,10 @@ const ChangePasswordModal = ({ isChangePassword, onCloseChangePasswordModalHandl
                     </Form.Group>
                     <div className="text-end">
                         <Button variant="secondary" className="me-2" onClick={onCloseChangePasswordModalHandler}>
-                            Close
+                            ยกเลิก
                         </Button>
                         <Button variant="primary" type="submit">
-                            Change
+                            เปลี่ยนรหัสผ่าน
                         </Button>
                     </div>
                 </Form>

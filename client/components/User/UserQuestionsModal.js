@@ -1,5 +1,6 @@
-import React from "react";
-import QuestionItem from "./QuestionItem";
+import { useState } from "react";
+import { Modal } from "react-bootstrap";
+import UserQuestionItem from "./UserQuestionItem";
 
 const DUMMY_QUESTIONS = [
     {
@@ -7,11 +8,7 @@ const DUMMY_QUESTIONS = [
         title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
         content:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
-        username: "Warathep",
-        profileImageUrl: "/profile-icons/w.png",
-        answers: 2,
         topic: "โรคผิวหนัง",
-        isAnsweredByDoctor: true,
         created_at: new Date(),
     },
     {
@@ -19,11 +16,7 @@ const DUMMY_QUESTIONS = [
         title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
         content:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
-        username: "Warathep",
-        profileImageUrl: "/profile-icons/w.png",
-        answers: 2,
         topic: "โรคหัวใจ",
-        isAnsweredByDoctor: true,
         created_at: new Date(),
     },
     {
@@ -31,11 +24,7 @@ const DUMMY_QUESTIONS = [
         title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
         content:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
-        username: "Warathep",
-        profileImageUrl: "/profile-icons/w.png",
-        answers: 5,
         topic: "โรคหัวใจ",
-        isAnsweredByDoctor: true,
         created_at: new Date(),
     },
     {
@@ -43,11 +32,7 @@ const DUMMY_QUESTIONS = [
         title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
         content:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
-        username: "Warathep",
-        profileImageUrl: "/profile-icons/w.png",
-        answers: 5,
         topic: "โรคหัวใจ",
-        isAnsweredByDoctor: true,
         created_at: new Date(),
     },
     {
@@ -55,27 +40,26 @@ const DUMMY_QUESTIONS = [
         title: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
         content:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non consequuntur sint consectetur in libero nesciunt.",
-        username: "Warathep",
-        profileImageUrl: "/profile-icons/w.png",
-        answers: 5,
         topic: "โรคหัวใจ",
-        isAnsweredByDoctor: true,
         created_at: new Date(),
     },
 ];
 
-const LatestQuestions = ({ questions }) => {
+const UserQuestionsModal = ({isShow, onCloseModalHandler}) => {
+    const [questions, setQuestions] = useState(DUMMY_QUESTIONS);
+
     return (
-        <div className="py-3 px-4">
-            <h3>Latest questions</h3>
-            <hr />
-            <div>
-                {DUMMY_QUESTIONS.map((question) => (
-                    <QuestionItem question={question} key={question.question_id} />
-                ))}
-            </div>
-        </div>
+        <Modal show={isShow} onHide={onCloseModalHandler}>
+            <Modal.Header closeButton>
+                <Modal.Title>Questions</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div className="px-3">
+                    {questions.map(question => <UserQuestionItem question={question} key={question.question_id} />)}
+                </div>
+            </Modal.Body>
+        </Modal>
     );
 };
 
-export default LatestQuestions;
+export default UserQuestionsModal;

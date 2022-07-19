@@ -2,15 +2,18 @@ import React from "react";
 import { Navbar, Nav, Container, Dropdown, SplitButton, Badge } from "react-bootstrap";
 import Link from "next/link";
 import SearchBar from "../Searching/SearchBar";
+import { useSelector } from "react-redux";
 
 const DoctorNav = () => {
+    const { username, profileImageUrl, unreadNotifications } = useSelector((state) => state.profileSlice);
+
     const logoutHandler = () => {};
 
-    const ProfileComponent = () => (
+    const ProfileComponent = ({ username, profileImageUrl }) => (
         <Link href="/profile">
             <div className="d-flex align-items-center">
                 <img
-                    src="/unknown-profile.png"
+                    src={profileImageUrl}
                     style={{ backgroundColor: "white", borderRadius: "50%", width: "35px" }}
                 />
                 <span
@@ -20,7 +23,7 @@ const DoctorNav = () => {
                         whiteSpace: "nowrap",
                     }}
                 >
-                    DOCTOR NAME
+                    {username + "DOCTOR"}
                 </span>
             </div>
         </Link>
@@ -30,7 +33,7 @@ const DoctorNav = () => {
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand>
-                    <Link href="/">
+                    <Link href="/doctor/home">
                         <div className="d-flex align-items-center" role="button">
                             <img
                                 style={{
@@ -55,7 +58,7 @@ const DoctorNav = () => {
                 </div>
                 <Nav className="ms-auto">
                     <div className="d-flex align-items-center">
-                        <SplitButton variant="dark" title={<ProfileComponent />}>
+                        <SplitButton variant="dark" title={<ProfileComponent username={username} profileImageUrl={profileImageUrl} />}>
                             <Dropdown.Item>
                                 <Link href="/blogs/create">
                                     <span className="text-dark text-decoration-none" role="button">

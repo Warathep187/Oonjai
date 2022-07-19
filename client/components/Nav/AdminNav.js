@@ -18,7 +18,7 @@ const AdminNav = () => {
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand>
-                    <Link href="/admin">
+                    <Link href="/admin/dashboard">
                         <div className="d-flex align-items-center" role="button">
                             <img
                                 style={{
@@ -41,6 +41,13 @@ const AdminNav = () => {
                 <Nav className="ms-auto">
                     <div className="d-flex align-items-center">
                         <SplitButton variant="dark" title={<ProfileComponent />}>
+                            <Dropdown.Item>
+                                <Link href="/admin/dashboard">
+                                    <span className="text-dark text-decoration-none" role="button">
+                                        Dashboard
+                                    </span>
+                                </Link>
+                            </Dropdown.Item>
                             <Dropdown.Item>
                                 <Link href="/admin/topics">
                                     <span className="text-dark text-decoration-none" role="button">

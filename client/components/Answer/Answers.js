@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Answer from "./Answer";
 
-const Answers = () => {
+const Answers = ({questionId}) => {
     const [answers, setAnswers] = useState([
         {
             answer_id: 1,

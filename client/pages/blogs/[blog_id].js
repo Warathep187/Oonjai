@@ -2,8 +2,8 @@ import { Container, Badge } from "react-bootstrap";
 import Link from "next/link";
 import moment from "moment";
 import { Heart, HeartFill, ArrowRightCircle } from "react-bootstrap-icons";
-import BottomLatestQuestions from "../../components/Blog/BottomLatestQuestions";
 import RelateBlog from "../../components/Blog/RelateBlog";
+import LatestQuestions from "../../components/Question/LatestQuestions";
 
 const BLOG = {
     blog_id: 1,
@@ -80,7 +80,7 @@ const BlogPage = () => {
                             </div>
                         </div>
                     </div>
-                    <BottomLatestQuestions />
+                    <LatestQuestions />
                 </div>
                 <div className="w-25 ms-3 mb-4 rounded bg-light py-3 px-2 h-100">
                     <h5>Blogที่เกี่ยวข้อง</h5>

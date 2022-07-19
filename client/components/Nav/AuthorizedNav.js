@@ -2,18 +2,18 @@ import React from "react";
 import { Navbar, Nav, Container, Dropdown, SplitButton, Badge } from "react-bootstrap";
 import Link from "next/link";
 import SearchBar from "../Searching/SearchBar";
+import { useSelector } from "react-redux";
 
 const AuthorizedNav = () => {
+    const { username, profileImageUrl, unreadNotifications } = useSelector((state) => state.profileSlice);
+
     const logoutHandler = () => {};
 
-    const ProfileComponent = () => (
+    const ProfileComponent = ({ username, profileImageUrl }) => (
         <Link href="/profile">
             <div className="d-flex align-items-center">
-                <img
-                    src="/unknown-profile.png"
-                    style={{ backgroundColor: "white", borderRadius: "50%", width: "35px" }}
-                />
-                <span className="text-light text-decoration-none ms-2">USERNAME</span>
+                <img src={profileImageUrl} style={{ backgroundColor: "white", borderRadius: "50%", width: "35px" }} />
+                <span className="text-light text-decoration-none ms-2">{username}</span>
             </div>
         </Link>
     );
@@ -47,7 +47,10 @@ const AuthorizedNav = () => {
                 </div>
                 <Nav className="ms-auto">
                     <div className="d-flex align-items-center">
-                        <SplitButton variant="dark" title={<ProfileComponent />}>
+                        <SplitButton
+                            variant="dark"
+                            title={<ProfileComponent username={username} profileImageUrl={profileImageUrl} />}
+                        >
                             <Dropdown.Item>
                                 <Link href="/questions/create">
                                     <span className="text-dark text-decoration-none" role="button">
@@ -68,9 +71,11 @@ const AuthorizedNav = () => {
                                         <span className="text-dark text-decoration-none" role="button">
                                             การแจ้งเตือน
                                         </span>
-                                        <Badge pill bg="danger">
-                                            5
-                                        </Badge>
+                                        {unreadNotifications > 0 && (
+                                            <Badge pill bg="danger">
+                                                {unreadNotifications}
+                                            </Badge>
+                                        )}
                                     </div>
                                 </Link>
                             </Dropdown.Item>
