@@ -81,6 +81,7 @@ const AdminUserManagementPage = () => {
                                     borderRadius: "20px",
                                 }}
                                 onChange={(e) => setKeyword(e.target.value)}
+                                value={keyword}
                             />
                         </Form>
                     </div>

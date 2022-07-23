@@ -29,7 +29,7 @@ const BlogPage = () => {
                         bg="warning"
                         style={{
                             position: "absolute",
-                            left: -12,
+                            left: 0,
                             top: -10,
                         }}
                         className="px-3 py-2"

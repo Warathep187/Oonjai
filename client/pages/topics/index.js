@@ -61,10 +61,10 @@ const TopicsPage = () => {
                             borderRadius: "2rem"
                         }}
                     />
-                    <div className="row mx-auto">
+                    <div className="w-100 py-2">
                         {topics.map((topic) => (
-                            <Link href={`/topic/${topic.topic}`}>
-                                <div className="col-4 border rounded py-1" style={{
+                            <Link href={`/topics/${topic.topic}`}>
+                                <div className="rounded p-2 border border-bottom w-50 mx-auto" style={{
                                     backgroundColor: "white"
                                 }}>
                                     <CardList className="me-auto" />

@@ -20,7 +20,7 @@ const UserItem = ({ user, onSetSelectedUser }) => {
                 />
             </div>
             <div className="ms-2">
-                <span>{user.email}</span>
+                <span>{user.username}</span>
             </div>
             <div className="ms-2">
                 {user.is_verified ? (
